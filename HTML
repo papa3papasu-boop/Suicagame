@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>インクゲーム</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght=800;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+</head>
+<body id="game-body">
+
+  <div id="menu-screen" class="screen">
+    <div id="menu-wrapper">
+      <div class="cute-title-logo">
+        <span class="char-i">イ</span>
+        <span class="char-n">ン</span>
+        <span class="char-ku">ク</span>
+        <span class="char-ge">ゲ</span>
+        <span class="char-mu">ー</span>
+        <span class="char-mu2">ム</span>
+      </div>
+      
+      <div class="menu-buttons">
+        <button onclick="changeMode('solo')">ひとりで遊ぶ</button>
+        <button onclick="changeMode('cpu')">CPU対戦</button>
+        <button onclick="openSettings()">設定</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="settings-screen" class="screen hidden">
+    <div id="settings-wrapper">
+      <h2 class="section-title">せってい</h2>
+      <div class="setting-item">
+        <label>はいけいの色:</label>
+        <select id="bg-select" onchange="updateBackground()">
+          <option value="cream">クリーム</option>
+          <option value="dark">サイバー</option>
+          <option value="pastel">パステル</option>
+        </select>
+      </div>
+      <button onclick="closeSettings()" class="back-btn">もどる</button>
+    </div>
+  </div>
+
+  <div id="play-screen" class="screen hidden">
+    <div id="wrapper">
+      
+      <div id="info-panel">
+        <div class="info-box player-info">
+          <span id="p1-label">PLAYER</span><br>
+          SCORE: <span id="score-val">0</span>
+        </div>
+        <div class="info-box next-box">
+          NEXT<br>
+          <canvas id="nextCanvas" width="50" height="50"></canvas>
+        </div>
+        <div class="info-box cpu-info hidden">
+          CPU<br>
+          SCORE: <span id="cpu-score-val">0</span>
+        </div>
+      </div>
+
+      <div id="games-layout">
+        <div id="game-container" class="matter-container"></div>
+        <div id="cpu-game-container" class="matter-container hidden"></div>
+      </div>
+
+      <div id="evolution-guide">
+        <div class="guide-title">シンカゲージ</div>
+        <div id="gauge-dots"></div>
+      </div>
+
+      <button id="to-menu-btn" onclick="backToMenu()">メニューにもどる</button>
+      
+    </div>
+  </div>
+
+</body>
+</html>
